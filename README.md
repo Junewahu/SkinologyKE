@@ -1,73 +1,41 @@
-# Welcome to your Lovable project
+# SkinologyKE 🚀
 
-## Project info
+Welcome to **SkinologyKE** – the AI-powered dermatology platform built by doctors, for Africa, and for YOU! 🌍✨
 
-**URL**: https://lovable.dev/projects/5a65825a-eef3-4fb6-8a30-b35e2dca6e3f
+## What is SkinologyKE?
+SkinologyKE is your one-stop shop for skin health, diagnosis, education, and care. Whether you want to:
+- Get an instant AI skin diagnosis 🤳
+- Read expert blog articles 📰
+- Shop curated skincare products 🛒
+- Set reminders for your routine ⏰
+- Explore a gallery of real results 📸
+- Refer a friend or connect with a dermatologist 👩‍⚕️👨‍⚕️
+- Chat with our AI for quick advice 💬
 
-## How can I edit this code?
+...we've got you covered!
 
-There are several ways of editing your application.
+## Why is it awesome?
+- **Built by doctors**: Medically reviewed, up-to-date, and relevant for 2025 and beyond.
+- **Made for Africa**: Trained on diverse skin tones and conditions common in Kenya and the continent.
+- **Fun & Easy**: Modern UI, instant results, and no account required.
+- **Secure**: Your data is private and protected.
 
-**Use Lovable**
+## How to Run Locally 🏃‍♂️
+1. Clone this repo
+2. Install dependencies: `npm install`
+3. Start the frontend: `npm run dev`
+4. (Optional) Start the backend: `python api/app.py`
+5. Open [http://localhost:5173](http://localhost:5173) and enjoy!
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5a65825a-eef3-4fb6-8a30-b35e2dca6e3f) and start prompting.
+## Tech Stack
+- **Frontend**: React + Vite + Shadcn + Tailwind
+- **Backend**: Flask + Firebase + Python
+- **AI**: Custom-trained models for African skin
+- **Hosting**: Firebase Hosting, Render, or Fly.io
 
-Changes made via Lovable will be committed automatically to this repo.
+## Want to contribute?
+PRs, issues, and ideas are welcome! Help us make skin health accessible, accurate, and fun for everyone.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5a65825a-eef3-4fb6-8a30-b35e2dca6e3f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Made with ❤️ by doctors for Africa. Stay radiant, stay healthy, stay SkinologyKE!
