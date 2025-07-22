@@ -1,0 +1,3 @@
+# The Dangers of Skin Lightening Creams in Kenya
+
+Skin lightening creams are popular but can be dangerous if unregulated. Many contain harmful ingredients like mercury or steroids, which can cause skin thinning, infections, and long-term health problems. Instead of lightening, focus on healthy skin practices: sunscreen, hydration, and gentle care. If you want to address dark spots, consult a dermatologist for safe options.

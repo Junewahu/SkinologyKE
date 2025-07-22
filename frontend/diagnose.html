@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skin Diagnosis</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h2>SkinologyKE Diagnosis</h2>
+  </header>
+  <main>
+    <form id="diagnosis-form">
+      <label for="image">Upload Skin Photo:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+      <label for="symptoms">Describe Symptoms:</label>
+      <textarea id="symptoms" name="symptoms" required></textarea>
+      <button type="submit">Diagnose</button>
+    </form>
+    <div id="result"></div>
+    <a href="https://wa.me/254700000000?text=I+need+a+dermatologist+referral+for+my+SkinologyKE+diagnosis">Contact Dermatologist</a>
+    <a href="https://forms.gle/your-google-form-id">Referral Form</a>
+  </main>
+  <script src="js/diagnose.js"></script>
+</body>
+</html>

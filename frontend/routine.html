@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skin Routine Checklist</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h2>AM/PM Skin Routine</h2>
+  </header>
+  <main>
+    <form id="routine-form">
+      <h3>Morning Routine</h3>
+      <input type="checkbox" id="cleanse-am"> <label for="cleanse-am">Cleanse</label><br>
+      <input type="checkbox" id="moisturize-am"> <label for="moisturize-am">Moisturize</label><br>
+      <input type="checkbox" id="spf-am"> <label for="spf-am">SPF</label><br>
+      <h3>Evening Routine</h3>
+      <input type="checkbox" id="cleanse-pm"> <label for="cleanse-pm">Cleanse</label><br>
+      <input type="checkbox" id="treat-pm"> <label for="treat-pm">Treat (e.g. retinoid)</label><br>
+      <input type="checkbox" id="moisturize-pm"> <label for="moisturize-pm">Moisturize</label><br>
+      <button type="submit">Save Routine</button>
+    </form>
+    <div id="routine-status"></div>
+  </main>
+  <script src="js/reminders.js"></script>
+</body>
+</html>

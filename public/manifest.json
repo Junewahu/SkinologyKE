@@ -1,0 +1,9 @@
+{
+  "name": "SkinologyKE",
+  "short_name": "SkinologyKE",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "AI meets African Skin. Dermatology diagnosis, education, shop, and reminders.",
+  "icons": [{ "src": "favicon.ico", "sizes": "64x64", "type": "image/x-icon" }]
+}

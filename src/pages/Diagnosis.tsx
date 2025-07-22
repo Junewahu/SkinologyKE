@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Upload, Camera, AlertCircle, CheckCircle, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import heroImage from "@/assets/hero-diagnosis.jpg";
+import { Carousel } from "@/components/ui/carousel";
 
 export default function Diagnosis() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -16,6 +17,14 @@ export default function Diagnosis() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [additionalInfo, setAdditionalInfo] = useState("");
+  const [result, setResult] = useState<null | {
+    diagnosis: string;
+    confidence: number;
+    routine: string;
+  }>(null);
+  const [galleryUploads, setGalleryUploads] = useState<Array<{url: string, caption: string, consent: boolean, approved: boolean}>>([]);
+  const [galleryCaption, setGalleryCaption] = useState("");
+  const [galleryConsent, setGalleryConsent] = useState(false);
   const { toast } = useToast();
 
   const symptomOptions = [
@@ -60,16 +69,46 @@ export default function Diagnosis() {
     }
 
     setIsAnalyzing(true);
+    setResult(null);
     
     // Simulate AI analysis
     setTimeout(() => {
       setIsAnalyzing(false);
+      setResult({
+        diagnosis: "Acne Vulgaris",
+        confidence: 92,
+        routine: "Cleanse AM/PM, apply benzoyl peroxide, moisturize, use sunscreen. Avoid picking."
+      });
       toast({
         title: "Analysis Complete",
         description: "Your skin condition has been analyzed. Please consult with a dermatologist for proper treatment.",
       });
     }, 3000);
   };
+
+  const handleGalleryUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && galleryConsent) {
+      // Upload to Firebase Storage (pseudo-code)
+      const storageRef = window.firebase.storage().ref(`gallery/${file.name}`);
+      await storageRef.put(file);
+      const url = await storageRef.getDownloadURL();
+      // Save to Firestore
+      await window.firebase.firestore().collection("gallery").add({ url, caption: galleryCaption, consent: true, approved: false });
+      setGalleryCaption("");
+      setGalleryConsent(false);
+      alert("Upload submitted for moderation.");
+    }
+  };
+
+  useEffect(() => {
+    // Load gallery from Firestore (pseudo-code)
+    if (window.firebase) {
+      window.firebase.firestore().collection("gallery").where("approved", "==", true).onSnapshot(snapshot => {
+        setGalleryUploads(snapshot.docs.map(doc => doc.data()));
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -230,6 +269,58 @@ export default function Diagnosis() {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Result Section */}
+        {result && (
+          <div className="mt-12 max-w-2xl mx-auto">
+            <Card className="shadow-[var(--shadow-soft)]">
+              <CardHeader>
+                <CardTitle className="text-primary">Diagnosis Result</CardTitle>
+                <CardDescription>
+                  <span className="font-semibold">Condition:</span> {result.diagnosis}<br />
+                  <span className="font-semibold">Confidence:</span> {result.confidence}%
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mb-4">
+                  <span className="font-semibold">Suggested Routine:</span>
+                  <div className="mt-2 text-muted-foreground">{result.routine}</div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => window.open('https://wa.me/254700000000?text=Hi%20SkinologyKE%2C%20I%20need%20a%20dermatologist%20referral%20for%20'+encodeURIComponent(result.diagnosis), '_blank')}
+                >
+                  See Dermatologist (WhatsApp)
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </section>
+
+      {/* Before/After Carousel */}
+      <section className="py-16 px-4">
+        <div className="max-w-2xl mx-auto mt-16">
+          <h2 className="text-2xl font-bold mb-4 text-center">Before & After Gallery</h2>
+          <form className="mb-8 flex flex-col md:flex-row gap-2 items-center justify-center" onSubmit={e => {e.preventDefault();}}>
+            <input type="file" accept="image/*" onChange={handleGalleryUpload} />
+            <input type="text" placeholder="Caption (e.g. Acne after 3 months)" value={galleryCaption} onChange={e => setGalleryCaption(e.target.value)} className="border rounded px-2 py-1" />
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={galleryConsent} onChange={e => setGalleryConsent(e.target.checked)} />
+              I consent to public sharing and moderation
+            </label>
+            <Button type="submit" disabled={!galleryConsent}>Upload</Button>
+          </form>
+          <Carousel>
+            {galleryUploads.map((img, idx) => (
+              <div key={idx}>
+                <img src={img.url} alt={img.caption} className="w-full rounded-lg" />
+                <div className="text-center mt-2 text-sm">{img.caption}</div>
+              </div>
+            ))}
+          </Carousel>
         </div>
       </section>
     </div>

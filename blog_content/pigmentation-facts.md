@@ -1,0 +1,3 @@
+# Post-Inflammatory Hyperpigmentation: Treatment Options
+
+Dark spots and uneven skin tone are common after acne, cuts, or inflammation. This is called post-inflammatory hyperpigmentation (PIH). For African skin, PIH can last longer and be more noticeable. Treatment includes sunscreen, gentle exfoliation, and products with ingredients like niacinamide or azelaic acid. Avoid harsh bleaching creams, as they can damage the skin. Consistency and patience are key.

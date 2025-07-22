@@ -1,0 +1,3 @@
+# Understanding Acne in African Skin: Myths vs Facts
+
+Acne is a common skin condition affecting people of all ages, but myths about its causes and treatment are widespread, especially in Africa. Contrary to popular belief, acne is not caused by dirty skin or eating oily foods. Genetics, hormones, and stress play a bigger role. For darker skin tones, harsh treatments can worsen hyperpigmentation. Evidence-based care includes gentle cleansing, non-comedogenic moisturizers, and targeted treatments like benzoyl peroxide or adapalene. Always consult a dermatologist for persistent or severe acne.

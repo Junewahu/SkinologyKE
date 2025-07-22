@@ -3,6 +3,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ArrowRight, User } from "lucide-react";
+import acneImage from "@/assets/acne.png";
+import lightenImage from "@/assets/lighten.png";
+import eczemaImage from "@/assets/eczema.png";
+import doctorImage from "@/assets/doctor.png";
 import skinHealthImage from "@/assets/skin-health.jpg";
 import consultationImage from "@/assets/consultation.jpg";
 
@@ -15,8 +19,8 @@ export default function Blog() {
       category: "Acne Care",
       readTime: "5 min read",
       author: "Dr. Sarah Kimani",
-      date: "2024-01-15",
-      image: skinHealthImage,
+      date: "2025-07-07",
+      image: acneImage,
       featured: true
     },
     {
@@ -25,9 +29,9 @@ export default function Blog() {
       excerpt: "An in-depth look at the health risks associated with unregulated skin lightening products and safer alternatives for even skin tone.",
       category: "Safety Alert",
       readTime: "8 min read", 
-      author: "Dr. Michael Wanjiku",
-      date: "2024-01-12",
-      image: consultationImage,
+      author: "Dr. Michael Wafula",
+      date: "2025-12-06",
+      image: lightenImage,
       featured: true
     },
     {
@@ -36,9 +40,9 @@ export default function Blog() {
       excerpt: "Learn to identify the key differences between eczema and fungal skin infections, especially common in Kenya's climate.",
       category: "Diagnosis",
       readTime: "6 min read",
-      author: "Dr. Grace Njeri",
-      date: "2024-01-10",
-      image: skinHealthImage,
+      author: "Dr. Grace Owino",
+      date: "2025-10-05",
+      image: eczemaImage,
       featured: false
     },
     {
@@ -47,9 +51,9 @@ export default function Blog() {
       excerpt: "Comprehensive guide to treating dark spots and discoloration after acne, cuts, or other skin injuries.",
       category: "Hyperpigmentation",
       readTime: "7 min read",
-      author: "Dr. James Mwangi",
-      date: "2024-01-08",
-      image: consultationImage,
+      author: "Dr. Jamie Smith",
+      date: "2025-08-04",
+      image: doctorImage,
       featured: false
     },
     {
@@ -58,8 +62,8 @@ export default function Blog() {
       excerpt: "Essential steps for creating an effective skincare routine using affordable, locally available products.",
       category: "Skincare Basics",
       readTime: "4 min read",
-      author: "Dr. Ann Muthoni",
-      date: "2024-01-05",
+      author: "Dr. Ann Mutiso",
+      date: "2025-05-03",
       image: skinHealthImage,
       featured: false
     },
@@ -69,8 +73,8 @@ export default function Blog() {
       excerpt: "Understanding UV damage in darker skin tones and choosing the right sunscreen for Kenyan weather conditions.",
       category: "Sun Care",
       readTime: "5 min read",
-      author: "Dr. Peter Kariuki",
-      date: "2024-01-03",
+      author: "Dr. Peter Chepkurui",
+      date: "2025-03-02",
       image: consultationImage,
       featured: false
     }

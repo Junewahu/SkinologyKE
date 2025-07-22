@@ -1,13 +1,18 @@
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Camera, BookOpen, Users, Shield, Star, CheckCircle, ArrowRight, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-diagnosis.jpg";
 import skinHealthImage from "@/assets/skin-health.jpg";
 import consultationImage from "@/assets/consultation.jpg";
+import { useState } from "react";
+import { db } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const Index = () => {
+  const [orderStatus, setOrderStatus] = useState("");
+
   const features = [
     {
       icon: Camera,
@@ -51,6 +56,15 @@ const Index = () => {
       text: "The AI diagnosis saved me time and money. I got the right treatment faster than ever before."
     }
   ];
+
+  const handleOrder = async (product: string, payment: string) => {
+    try {
+      await addDoc(collection(db, "orders"), { product, payment, status: "pending" });
+      setOrderStatus("Order placed! Await confirmation.");
+    } catch (error) {
+      setOrderStatus("Order failed. Please try again.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -235,6 +249,43 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Product/Shop Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+          {/* Product Shop Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Shop: Curated Skincare</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="mb-4 list-disc pl-4">
+                <li>Cosrx Low pH Cleanser – For oily/acne-prone skin <Button variant="outline" onClick={() => handleOrder('Cosrx Low pH Cleanser', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Cosrx Low pH Cleanser', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Beauty of Joseon Sunscreen – Lightweight, broad spectrum <Button variant="outline" onClick={() => handleOrder('Beauty of Joseon Sunscreen', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Beauty of Joseon Sunscreen', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Cerave Moisturizing Cream – For dry/sensitive skin <Button variant="outline" onClick={() => handleOrder('Cerave Moisturizing Cream', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Cerave Moisturizing Cream', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Avene Cleanance Gel – Gentle daily cleanser <Button variant="outline" onClick={() => handleOrder('Avene Cleanance Gel', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Avene Cleanance Gel', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Epiduo Gel – Prescription acne treatment <Button variant="outline" onClick={() => handleOrder('Epiduo Gel', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Epiduo Gel', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Clindamycin Lotion – For inflamed acne <Button variant="outline" onClick={() => handleOrder('Clindamycin Lotion', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Clindamycin Lotion', 'MPESA')}>Buy with MPESA</Button></li>
+                <li>Hydrocortisone Cream – For eczema/irritation <Button variant="outline" onClick={() => handleOrder('Hydrocortisone Cream', 'Flutterwave')}>Buy with Flutterwave</Button> <Button variant="outline" onClick={() => handleOrder('Hydrocortisone Cream', 'MPESA')}>Buy with MPESA</Button></li>
+              </ul>
+              <div className="text-green-600 font-bold">{orderStatus}</div>
+              <div className="text-xs text-muted-foreground mb-2">For orders, contact us via WhatsApp or visit our Nairobi partner store.</div>
+              <Button variant="outline" onClick={() => window.open('https://wa.me/254700000000?text=Hi%20SkinologyKE%2C%20I%20want%20to%20order%20skincare%20products', '_blank')}>Order via WhatsApp</Button>
+            </CardContent>
+          </Card>
+          {/* Referral Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Dermatologist Referral</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-4">Need expert advice? Fill out our referral form or chat directly.</div>
+              <Button variant="default" className="mb-2 w-full" onClick={() => window.open('https://forms.gle/your-google-form-id', '_blank')}>Referral Form (Google)</Button>
+              <Button variant="outline" className="w-full" onClick={() => window.open('https://wa.me/254700000000?text=Hi%20SkinologyKE%2C%20I%20need%20a%20dermatologist%20referral', '_blank')}>WhatsApp Dermatologist</Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto text-center px-4">
@@ -311,7 +362,7 @@ const Index = () => {
           </div>
           
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 SkinologyKE. All rights reserved. Made with care for African skin health.</p>
+            <p>&copy; 2025 SkinologyKE. Developed by a medical doctor for African skin health. All content is medically reviewed and up-to-date.</p>
           </div>
         </div>
       </footer>

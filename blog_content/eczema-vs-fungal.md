@@ -1,0 +1,3 @@
+# Eczema vs Fungal Infections: How to Tell the Difference
+
+Eczema and fungal infections are common in Kenyan children, but they require different treatments. Eczema often appears as dry, itchy patches, sometimes with redness and swelling. Fungal infections, like ringworm, show up as circular, scaly rashes with clear edges. Using steroid creams on fungal infections can make them worse. If unsure, see a dermatologist for proper diagnosis and care.
