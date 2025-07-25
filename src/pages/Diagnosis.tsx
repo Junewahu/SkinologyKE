@@ -152,9 +152,8 @@ export default function Diagnosis() {
       formData.append("image", selectedImage);
       formData.append("symptoms", JSON.stringify(symptoms));
       formData.append("additionalInfo", additionalInfo);
-      // TODO: Set your deployed Flask API endpoint below (e.g., from .env or config)
-      const API_URL = process.env.REACT_APP_FLASK_API_URL || "https://your-flask-api-url/diagnose";
-      const response = await fetch(API_URL, {
+      // Replace with your Flask API endpoint
+      const response = await fetch("https://your-flask-api-url/diagnose", {
         method: "POST",
         body: formData,
       });
