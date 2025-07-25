@@ -2,7 +2,7 @@
 
 Welcome to **SkinologyKE** – the AI-powered dermatology platform built by doctors, for Africa, and for YOU! 🌍✨
 
-![SkinologyKE](/assets/homepage.png)
+![Alt text](src/assets/homepage.png)
 
 ## What is SkinologyKE?
 SkinologyKE is your one-stop shop for skin health, diagnosis, education, and care. Whether you want to:
