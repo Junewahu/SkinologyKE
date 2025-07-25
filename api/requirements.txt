@@ -1,0 +1,10 @@
+Flask
+flask-cors
+firebase-admin
+requests
+Pillow
+numpy
+scikit-learn
+torch
+torchvision
+joblib

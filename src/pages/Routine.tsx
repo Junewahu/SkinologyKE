@@ -18,6 +18,7 @@ export default function Routine() {
 	const [email, setEmail] = useState("");
 	const [calendarAdded, setCalendarAdded] = useState(false);
 	const [user, setUser] = useState(null);
+	const [notifStatus, setNotifStatus] = useState('');
 
 	useEffect(() => {
 		localStorage.setItem("routineChecked", JSON.stringify(checked));
@@ -25,23 +26,29 @@ export default function Routine() {
 
 	useEffect(() => {
 		// OneSignal browser notification setup (pseudo-code)
-		if (window.OneSignal) {
-			window.OneSignal.init({ appId: "YOUR_ONESIGNAL_APP_ID" });
+		if ((window as any).OneSignal) {
+			(window as any).OneSignal.init({ appId: "YOUR_ONESIGNAL_APP_ID" });
+			setNotifStatus('Browser notifications enabled');
+		} else {
+			setNotifStatus('Browser notifications not enabled');
 		}
 	}, []);
 
 	useEffect(() => {
 		// Save routine to Firestore if logged in
-		if (user && window.firebase) {
-			window.firebase.firestore().collection('routines').doc(user.uid).set({ checked });
+		if (user && (window as any).firebase) {
+			(window as any).firebase.firestore().collection('routines').doc(user.uid).set({ checked });
 		}
 	}, [checked, user]);
+
+	// Progress tracker: percent complete
+	const progress = Math.round((Object.values(checked).filter(Boolean).length / routineItems.length) * 100);
 
 	const handleCheck = (key: string) => {
 		setChecked({ ...checked, [key]: !checked[key] });
 		// Send notification if checked
-		if (window.OneSignal && !checked[key]) {
-			window.OneSignal.sendSelfNotification({
+		if ((window as any).OneSignal && !checked[key]) {
+			(window as any).OneSignal.sendSelfNotification({
 				title: "SkinologyKE Reminder",
 				message: `Don't forget your ${key.replace('_', ' ')}!`
 			});
@@ -82,6 +89,29 @@ export default function Routine() {
 			</ul>
 			<div className="mt-8">
 				<input
+	return (
+		<div className="min-h-screen bg-background p-8">
+			<h1 className="text-3xl font-bold mb-6">Daily Skin Routine</h1>
+			<div className="mb-4">Check off each step as you complete it. Your progress is saved locally.</div>
+			<div className="mb-4 text-sm text-muted-foreground">{notifStatus}</div>
+			<div className="mb-4 w-full bg-gray-200 rounded-full h-4">
+				<div className="bg-primary h-4 rounded-full" style={{ width: `${progress}%` }}></div>
+			</div>
+			<div className="mb-2 text-sm">Progress: {progress}%</div>
+			<div className="mb-6 grid gap-3">
+				{routineItems.map(item => (
+					<label key={item.key} className="flex items-center gap-2">
+						<input
+							type="checkbox"
+							checked={!!checked[item.key]}
+							onChange={() => handleCheck(item.key)}
+						/>
+						{item.label}
+					</label>
+				))}
+			</div>
+			<div className="mb-6">
+				<input
 					type="email"
 					placeholder="Email for reminders"
 					value={email}
@@ -89,10 +119,12 @@ export default function Routine() {
 					className="border rounded px-2 py-1 mr-2"
 				/>
 				<Button onClick={handleEmailReminder}>Set Email Reminder</Button>
-				<Button onClick={handleCalendar} className="ml-2">Add to Google Calendar</Button>
-				{calendarAdded && <span className="ml-2 text-green-600">Added to Calendar!</span>}
 			</div>
-			<Button onClick={() => setChecked({})}>Reset Checklist</Button>
+			<div className="mb-6">
+				<Button onClick={() => setCalendarAdded(true)} disabled={calendarAdded}>
+					{calendarAdded ? "Added to Calendar" : "Add to Google Calendar"}
+				</Button>
+			</div>
+			<div className="text-xs text-muted-foreground">Routine progress and reminders are for informational purposes only.</div>
 		</div>
 	);
-}

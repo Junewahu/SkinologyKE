@@ -9,6 +9,10 @@ import eczemaImage from "@/assets/eczema.png";
 import doctorImage from "@/assets/doctor.png";
 import skinHealthImage from "@/assets/skin-health.jpg";
 import consultationImage from "@/assets/consultation.jpg";
+import SEO from "@/components/SEO";
+import AdSensePlaceholder from "@/pages/AdSensePlaceholder";
+import AffiliateLink from "@/components/AffiliateLink";
+import SponsoredPostBadge from "@/components/SponsoredPostBadge";
 
 export default function Blog() {
   const blogPosts = [
@@ -21,7 +25,9 @@ export default function Blog() {
       author: "Dr. Sarah Kimani",
       date: "2025-07-07",
       image: acneImage,
-      featured: true
+      featured: true,
+      sponsored: true,
+      affiliateLink: "https://example.com/acne-treatment"
     },
     {
       id: 2,
@@ -98,6 +104,9 @@ export default function Blog() {
     <div className="min-h-screen bg-background">
       <Navigation />
       
+      {/* SEO Component */}
+      <SEO title="SkinologyKE Blog" description="Expert insights on skincare, dermatology, and wellness for African skin. Medically reviewed, up-to-date, and relevant for 2025." />
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-secondary to-primary-light">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -110,6 +119,9 @@ export default function Blog() {
           </p>
         </div>
       </section>
+
+      {/* AdSense Placeholder */}
+      <AdSensePlaceholder />
 
       {/* Blog Content */}
       <section className="py-16 px-4">

@@ -7,6 +7,12 @@ import Index from "./pages/Index";
 import Diagnosis from "./pages/Diagnosis";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+import FeedbackForm from "@/components/FeedbackForm";
+import Analytics from "@/components/Analytics";
+import PushNotifications from "@/components/PushNotifications";
+import CalendarReminder from "@/components/CalendarReminder";
+import ProgressTracker from "@/components/ProgressTracker";
+import UserAuth from "@/components/UserAuth";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +22,11 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Analytics />
+        <PushNotifications />
+        <CalendarReminder />
+        <ProgressTracker />
+        <UserAuth />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/diagnose" element={<Diagnosis />} />
@@ -24,6 +35,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <FeedbackForm />
     </TooltipProvider>
   </QueryClientProvider>
 );
